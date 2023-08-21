@@ -3443,7 +3443,7 @@ textarea.form-control-lg {
 
 .dropdown-menu-dark {
   --bs-dropdown-color: #dee2e6;
-  --bs-dropdown-bg: #343a40;
+  --bs-dropdown-bg: rgba(52, 58, 64, 0.91);
   --bs-dropdown-border-color: var(--bs-border-color-translucent);
   --bs-dropdown-box-shadow: ;
   --bs-dropdown-link-color: #dee2e6;
@@ -4218,7 +4218,7 @@ textarea.form-control-lg {
   --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(0, 133, 161, 0.25);
   --bs-accordion-body-padding-x: 1.25rem;
   --bs-accordion-body-padding-y: 1rem;
-  --bs-accordion-active-color: #007891;
+  --bs-accordion-active-color: #84c3ec;
   --bs-accordion-active-bg: #e6f3f6;
 }
 
@@ -4352,8 +4352,8 @@ textarea.form-control-lg {
   --bs-pagination-focus-bg: #e9ecef;
   --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(0, 133, 161, 0.25);
   --bs-pagination-active-color: #fff;
-  --bs-pagination-active-bg: #0085A1;
-  --bs-pagination-active-border-color: #0085A1;
+  --bs-pagination-active-bg: #84c3ec;
+  --bs-pagination-active-border-color: #84c3ec;
   --bs-pagination-disabled-color: #6c757d;
   --bs-pagination-disabled-bg: #fff;
   --bs-pagination-disabled-border-color: #dee2e6;
@@ -10795,4 +10795,9 @@ header.masthead .post-heading .meta a {
   .post-preview > a > .post-title {
     font-size: 2.25rem;
   }
+}
+
+.card-row{
+  max-width: 80%;
+  margin: 0 auto;
 }

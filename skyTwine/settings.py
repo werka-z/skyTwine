@@ -1,12 +1,9 @@
-
-
 from datetime import timedelta
 from decouple import config
 from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-kf%5l(h(y-i-3&g^dm1jflpwmy^6fx+*#&5-n@*!pm+5jue*+jblablaIdontgetDjangoYet'
@@ -112,7 +109,6 @@ SECRET_KEY = config('SECRET_KEY', default='fallback_secret_key_if_not_in_env')
 
 DEBUG = True
 
-
 CELERY_BROKER_URL = 'memory://'
 CELERY_RESULT_BACKEND = 'cache'
 CELERY_ACCEPT_CONTENT = ['json']
@@ -120,23 +116,12 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
-
 city_en = config('CITY_EN')
 city_pl = config('CITY_PL')
 
 CELERY_BEAT_SCHEDULE = {
-    'fetch_openweather_data_daily': {
-        'task': 'weather.tasks.fetch_and_process_openweather_data',
-        'schedule': timedelta(days=1),
-        'args': ('city',)
-    },
-    'fetch_weatherapi_data_daily': {
-        'task': 'weather.tasks.fetch_and_process_weatherapi_data',
-        'schedule': timedelta(days=1),
-        'args': ('YOUR_CITY_NAME',)
-    },
-    'fetch_average_data_daily': {
-        'task': 'weather.tasks.fetch_and_process_weatherapi_data',
+    'daily_updates': {
+        'task': 'weather.tasks.daily_updates',
         'schedule': timedelta(days=1),
     }
 }

@@ -1,70 +1,37 @@
 from django.shortcuts import render
 from .models import Weather
 from decouple import config
+from datetime import datetime, timedelta
 
 city_pl = config('CITY_PL')
 city_en = config('CITY_EN')
 
 
-def ow_view(request):
-    # raw_data = fetch_openweather_data(city_pl)
-    # processed_data_list = process_openweather_data(city_pl, raw_data)
-    #
-    # if not processed_data_list:
-    #     return HttpResponse("No data to process from openweather.")
-    #
-    #
-    # for data in processed_data_list:
-    #     Weather.objects.create(
-    #         city=data['city'],
-    #         country=data['country'],
-    #         temperature=data['temperature'],
-    #         sky_condition=data['sky_condition'],
-    #         wind_speed=data['wind_speed'],
-    #         pressure=data['pressure'],
-    #         humidity=data['humidity']
-    #     )
-    #
-    # all_weather_records = Weather.objects.all()
-    #
-    # context = {
-    #     'weather_records': all_weather_records
-    # }
-    #
-    # return render(request, 'index.html', {'active': 'ow'})
+def index_view(request):
+    # Fetching the source parameter from the URL, default is 'average'.
+    source = request.GET.get('source', 'average')
 
-    processed_data_list = [
-        {
-            'city': 'Sample City',
-            'country': 'Sample Country',
-            'temperature': '25°C',
-            'sky_condition': 'Sunny',
-            'wind_speed': '5m/s',
-            'pressure': '1000hPa',
-            'humidity': '60%',
-        },
-    ]
+    # today's date and two preceding days.
+    start_date = datetime.today().date()
+    end_date = start_date + timedelta(days=2)
+
+    # Fetching the weather instances based on the source and date range.
+    weather_data = list(Weather.custom_objects.filter(source=source, date__range=(start_date, end_date)).order_by('-date'))
 
     context = {
-        'weather_records': processed_data_list,
-        'active': 'ow'
-    }
-
-    return render(request, 'index.html', context)
-
-
-def wa_view(request):
-    all_weather_records = Weather.objects.all()
-
-    context = {
-        'weather_records': all_weather_records,
-        'active':'wa'
+        'weather_data': weather_data,
+        'active': source,
+        'ow_1': Weather.custom_objects.ow_1(),
+        'ow_2': Weather.custom_objects.ow_2(),
+        'ow_3': Weather.custom_objects.ow_3(),
+        'wa_1': Weather.custom_objects.wa_1(),
+        'wa_2': Weather.custom_objects.wa_2(),
+        'wa_3': Weather.custom_objects.wa_3(),
+        'av_1': Weather.custom_objects.av_1(),
+        'av_2': Weather.custom_objects.av_2(),
+        'av_3': Weather.custom_objects.av_3(),
     }
     return render(request, 'index.html', context)
-
-
-def average_view(request):
-    return render(request, 'index.html')
 
 
 def info_view(request):
