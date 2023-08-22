@@ -20,6 +20,6 @@ def debug_task(self):
 app.conf.beat_schedule = {
     'run-daily-updates': {
         'task': 'weather.tasks.daily_updates',
-        'schedule': crontab(minute=0, hour=0),
+        'schedule': 3600,  # Runs every hour - 3600 s
     }
 }

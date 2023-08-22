@@ -1,20 +1,20 @@
 <div class="card" style="color: #4B515D; border-radius: 35px;">
     <div class="card-body p-4">
         <div class="d-flex">
-            <h6 class="flex-grow-1">{{ date }}</h6>
-            <h6>{{ cityx }}</h6>
+            <h6 class="flex-grow-1" style="font-weight: normal;">{{ date }}</h6>
+            <h6 class="flex-grow-1" style="font-weight: normal; margin-left: 95px">Kraków</h6>
         </div>
 
         <div class="d-flex flex-column text-center mt-5 mb-4">
-            <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;">{{ temperature }}</h6>
+            <h4 class="display-5 mb-0 font-weight-bold" style="color: #1C2331;">{{ temperature }}°C</h4>
             <span class="small" style="color: #868B94">{{ sky_condition }}</span>
         </div>
 
         <div class="d-flex align-items-center">
             <div class="flex-grow-1" style="font-size: 1rem;">
-                <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ wind_speed }}</span></div>
-                <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ humidity }}</span></div>
-                <div><i class="fas fa-compass fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ pressure }}</span></div>
+                <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ wind_speed }} km/h</span></div>
+                <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ humidity }}%</span></div>
+                <div><i class="fas fa-compass fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ pressure }} hPa</span></div>
             </div>
             <div>
                 <img src="{{ image }}" width="100px" alt="">
@@ -22,3 +22,4 @@
         </div>
     </div>
 </div>
+

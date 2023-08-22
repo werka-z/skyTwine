@@ -1,4 +1,3 @@
-import json
 from celery import shared_task
 from .services import fetch_openweather_data, fetch_weatherapi_data, process_openweather_data, process_weatherapi_data
 from decouple import config
@@ -12,8 +11,8 @@ city = config('CITY_PL')
 
 
 # Executes daily: fetches and processes data, calculates and creates the average model
-# @shared_task
-def daily_updates():
+@shared_task
+def hourly_updates():
 
     raw_data_ow = fetch_openweather_data(city)
     if raw_data_ow:

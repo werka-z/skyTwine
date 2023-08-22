@@ -51,13 +51,10 @@ def fetch_weatherapi_data(city, days=3):
 
 
 def process_openweather_data(data):
-    # print(data)
-    # print("OK")
-
     if "list" not in data:
         raise Exception("The 'list' key does not exist in the data dictionary.")
 
-    hours_of_interest = ["09:00:00", "12:00:00", "15:00:00", "18:00:00"]  # We want hours within the proper daytime
+    hours_of_interest = ["09:00:00", "12:00:00", "15:00:00", "18:00:00", "21:00:00"]  # Hours within the proper daytime
     days = {}  # Dictionary where keys are "YYYY-MM-DD" and values are other dictionaries
 
     for forecast in data['list']:
