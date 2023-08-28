@@ -4,7 +4,6 @@ from decouple import config
 from .models import Weather
 from .assign import assign_image, assign_sky_condition
 
-
 country = config('COUNTRY')
 city_en = config('CITY_EN')
 city = config('CITY_PL')
@@ -13,7 +12,6 @@ city = config('CITY_PL')
 # Executes daily: fetches and processes data, calculates and creates the average model
 @shared_task
 def hourly_updates():
-
     raw_data_ow = fetch_openweather_data(city)
     if raw_data_ow:
         process_openweather_data(raw_data_ow)
@@ -37,14 +35,14 @@ def hourly_updates():
             avg_image = assign_image(avg_skycon)
 
             Weather.custom_objects.create(
-                    date=ow.date,
-                    city=city,
-                    country=country,
-                    sky_condition=avg_skycon,
-                    temperature=avg_temp,
-                    wind_speed=avg_wind_speed,
-                    pressure=avg_pressure,
-                    humidity=avg_humidity,
-                    source='average',
-                    image=avg_image
-                )
+                date=ow.date,
+                city=city,
+                country=country,
+                sky_condition=avg_skycon,
+                temperature=avg_temp,
+                wind_speed=avg_wind_speed,
+                pressure=avg_pressure,
+                humidity=avg_humidity,
+                source='average',
+                image=avg_image
+            )

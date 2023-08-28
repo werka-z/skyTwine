@@ -4,7 +4,6 @@ from decouple import config
 from .models import Weather
 from .assign import assign_image
 
-
 logger = logging.getLogger(__name__)
 
 api_key_openweather = config('OPENWEATHER_API_KEY')
@@ -107,7 +106,6 @@ def process_openweather_data(data):
 
 
 def process_weatherapi_data(data):
-
     for day in data["forecast"]["forecastday"]:
         Weather.custom_objects.create(
             date=day["date"],

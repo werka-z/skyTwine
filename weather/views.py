@@ -16,7 +16,8 @@ def index_view(request):
     end_date = start_date + timedelta(days=2)
 
     # Fetching the weather instances based on the source and date range.
-    weather_data = list(Weather.custom_objects.filter(source=source, date__range=(start_date, end_date)).order_by('-date'))
+    weather_data = list(
+        Weather.custom_objects.filter(source=source, date__range=(start_date, end_date)).order_by('-date'))
 
     context = {
         'weather_data': weather_data,

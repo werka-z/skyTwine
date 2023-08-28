@@ -5,10 +5,7 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-kf%5l(h(y-i-3&g^dm1jflpwmy^6fx+*#&5-n@*!pm+5jue*+jblablaIdontgetDjangoYet'
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3.70.100.219', '127.0.0.1', 'skytwine.pl', 'www.skytwine.pl']
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,7 +49,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'skyTwine.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -82,7 +78,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -93,7 +88,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -107,7 +101,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECRET_KEY = config('SECRET_KEY', default='fallback_secret_key_if_not_in_env')
 
-DEBUG = True
+DEBUG = False
 
 CELERY_BROKER_URL = 'memory://'
 CELERY_RESULT_BACKEND = 'cache'
@@ -125,7 +119,3 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': timedelta(days=1),
     }
 }
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "weather/static"),
-]
